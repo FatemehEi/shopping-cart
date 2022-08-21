@@ -10,22 +10,25 @@ import { shorten } from '../../helper/functions';
 //icon
 import trashIcon from "../../assets/icons/trash.svg";
 
+//styles
+import styles from "./Cart.module.css";
+
 const Cart = (props) => {
 
     const {dispatch} = useContext(CartContext);
     const {image, title, price, quantity} = props.data;
 
     return (
-        <div>
-            <img src={image} alt="product" />
-            <div>
+        <div className={styles.container}>
+            <img className={styles.productImage} src={image} alt="product" />
+            <div className={styles.data}>
                 <h3>{shorten(title)}</h3>
-                <h3>{price}</h3>
+                <h3>{price} $</h3>
             </div>
             <div>
-                <span>{quantity}</span>
+                <span className={styles.quantity}>{quantity}</span>
             </div>
-            <div>
+            <div className={styles.buttonContainer}>
                 {
                     quantity > 1 ?
                     <button onClick={() => dispatch({type: "DECREASE", payload: props.data})}>-</button> :
